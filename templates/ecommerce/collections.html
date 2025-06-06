@@ -1,0 +1,151 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Collections - Centennial{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 100px;">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-lg-3 mb-4">
+            <div class="card bg-dark border-secondary">
+                <div class="card-header bg-gold text-dark">
+                    <h5 class="mb-0">Categories</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="{% url 'collections' %}" class="footer-link {% if not selected_category %}text-gold{% endif %}">
+                                All Watches
+                            </a>
+                        </li>
+                        {% for category in categories %}
+                        <li class="mb-2">
+                            <a href="{% url 'collections' %}?category={{ category.slug }}" 
+                               class="footer-link {% if selected_category == category.slug %}text-gold{% endif %}">
+                                {{ category.name }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Products Grid -->
+        <div class="col-lg-9">
+            <!-- Search Bar -->
+            <div class="card bg-dark border-secondary mb-4">
+                <div class="card-body">
+                    <form method="get" action="{% url 'collections' %}">
+                        <div class="input-group">
+                            <input type="text" 
+                                   name="q" 
+                                   class="form-control bg-dark text-light border-secondary" 
+                                   placeholder="Search watches by name, brand, or description..." 
+                                   value="{{ request.GET.q }}"
+                                   style="border-color: var(--primary-gold);">
+                            {% if selected_category %}
+                                <input type="hidden" name="category" value="{{ selected_category }}">
+                            {% endif %}
+                            <button class="btn btn-gold" type="submit">
+                                <i class="fas fa-search me-2"></i>Search
+                            </button>
+                        </div>
+                        {% if request.GET.q %}
+                        <div class="mt-2">
+                            <small class="text-muted">
+                                Search results for: <span class="text-gold">"{{ request.GET.q }}"</span>
+                                <a href="{% url 'collections' %}{% if selected_category %}?category={{ selected_category }}{% endif %}" class="text-gold ms-2">Clear search</a>
+                            </small>
+                        </div>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+            
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="mb-0">
+                    {% if selected_category %}
+                        {% with categories|first as first_category %}
+                            {{ first_category.name }} Collection
+                        {% endwith %}
+                    {% else %}
+                        All Timepieces
+                    {% endif %}
+                <span class="text-muted">{{ page_obj.paginator.count }} watches</span>
+            </div>
+            
+            {% if page_obj %}
+            <div class="row">
+                {% for watch in page_obj %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="watch-card h-100">
+                        <div class="position-relative overflow-hidden">
+                            <img src="{{ watch.image.url }}" alt="{{ watch.name }}" class="card-img-top">
+                            {% if watch.is_featured %}
+                            <div class="position-absolute top-0 end-0 p-3">
+                                <span class="badge bg-gold text-dark">Featured</span>
+                            </div>
+                            {% endif %}
+                            <div class="position-absolute bottom-0 start-0 end-0 p-3 bg-gradient" style="background: linear-gradient(transparent, rgba(0,0,0,0.8));">
+                                <form class="add-to-cart-form">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="watch_id" value="{{ watch.id }}">
+                                    <button type="submit" class="btn btn-gold btn-sm w-100">
+                                        <i class="fas fa-shopping-bag me-2"></i>Add to Cart
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card-body swatch text-center d-flex flex-column">
+                            <h5 class="card-title">{{ watch.name }}</h5>
+                            <p class="card-text text-muted flex-grow-1">{{ watch.description|truncatechars:80 }}</p>
+                            <div class="watch-price mb-3">${{ watch.price }}</div>
+                            <a href="{{ watch.get_absolute_url }}" class="btn btn-outline-gold">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Pagination -->
+            {% if page_obj.has_other_pages %}
+            <nav aria-label="Products pagination" class="mt-5">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link bg-dark border-secondary text-gold" href="?page=1{% if selected_category %}&category={{ selected_category }}{% endif %}">First</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link bg-dark border-secondary text-gold" href="?page={{ page_obj.previous_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}">Previous</a>
+                    </li>
+                    {% endif %}
+                    
+                    <li class="page-item active">
+                        <span class="page-link bg-gold text-dark border-gold">{{ page_obj.number }}</span>
+                    </li>
+                    
+                    {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link bg-dark border-secondary text-gold" href="?page={{ page_obj.next_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}">Next</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link bg-dark border-secondary text-gold" href="?page={{ page_obj.paginator.num_pages }}{% if selected_category %}&category={{ selected_category }}{% endif %}">Last</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+            
+            {% else %}
+            <div class="text-center py-5">
+                <h3 class="text-muted">No watches found</h3>
+                <p>Please check back later for new arrivals.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

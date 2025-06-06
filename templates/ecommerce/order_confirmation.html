@@ -1,0 +1,78 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Order Confirmation - Centennial{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 100px;">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="text-center mb-5">
+                <i class="fas fa-check-circle fa-5x text-gold mb-4"></i>
+                <h1 class="display-4 mb-3">Thank You!</h1>
+                <p class="lead">Your order has been placed successfully.</p>
+            </div>
+            
+            <div class="card bg-dark border-secondary">
+                <div class="card-header bg-gold text-dark">
+                    <h4 class="mb-0">Order #{{ order.id }}</h4>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h6 class="text-gold mb-3">Order Details</h6>
+                            <p class="mb-1"><strong>Order Date:</strong> {{ order.created_at|date:"F d, Y" }}</p>
+                            <p class="mb-1"><strong>Order Status:</strong> <span class="badge bg-warning text-dark">{{ order.status|title }}</span></p>
+                            <p class="mb-0"><strong>Total Amount:</strong> ${{ order.total_price }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-gold mb-3">Shipping Address</h6>
+                            <p class="mb-1">{{ order.first_name }} {{ order.last_name }}</p>
+                            <p class="mb-1">{{ order.address }}</p>
+                            <p class="mb-1">{{ order.city }}, {{ order.postal_code }}</p>
+                            <p class="mb-0">{{ order.country }}</p>
+                        </div>
+                    </div>
+                    
+                    <h6 class="text-gold mb-3">Items Ordered</h6>
+                    <div class="table-responsive">
+                        <table class="table table-dark">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in order.items.all %}
+                                <tr>
+                                    <td>{{ item.watch.name }}</td>
+                                    <td>{{ item.quantity }}</td>
+                                    <td>${{ item.price }}</td>
+                                    <td>${{ item.get_total_price }}</td>
+                                </tr>
+                                {% endfor %}
+                                <tr class="border-top border-gold">
+                                    <td colspan="3"><strong>Total</strong></td>
+                                    <td><strong class="text-gold">${{ order.total_price }}</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <p class="mb-4">We'll send you a confirmation email with tracking information once your order ships.</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    <a href="{% url 'collections' %}" class="btn btn-gold">Continue Shopping</a>
+                    <a href="{% url 'home' %}" class="btn btn-outline-gold">Return Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

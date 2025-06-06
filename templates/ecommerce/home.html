@@ -1,0 +1,210 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Centennial - Luxury Swiss Timepieces{% endblock %}
+
+{% block content %}
+<!-- Amazing Hero Slider -->
+<section class="hero-slider-container">
+    <div id="heroSlider" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="2"></button>
+            <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="3"></button>
+        </div>
+        
+        <!-- Slides -->
+        <div class="carousel-inner">
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+                <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?w=1920&h=1080&fit=crop');">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-lg-8">
+                                <div class="hero-content slide-in-left">
+                                    <h1 class="hero-title">CENTENNIAL</h1>
+                                    <h2 class="hero-subtitle">Swiss Precision Since 1890</h2>
+                                    <p class="hero-description">Discover our exclusive collection of handcrafted timepieces, where traditional craftsmanship meets modern innovation.</p>
+                                    <div class="hero-buttons">
+                                        <a href="{% url 'collections' %}" class="btn btn-gold btn-lg me-3">Explore Collection</a>
+                                        <a href="{% url 'about' %}" class="btn btn-outline-gold btn-lg">Our Heritage</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+                <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=1920&h=1080&fit=crop');">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-lg-8">
+                                <div class="hero-content slide-in-right">
+                                    <h1 class="hero-title">LUXURY REDEFINED</h1>
+                                    <h2 class="hero-subtitle">Exceptional Timepieces</h2>
+                                    <p class="hero-description">Every watch tells a story of precision, elegance, and timeless design crafted by master artisans.</p>
+                                    <div class="hero-buttons">
+                                        <a href="{% url 'collections' %}" class="btn btn-gold btn-lg me-3">Shop Now</a>
+                                        <a href="{% url 'contact' %}" class="btn btn-outline-gold btn-lg">Contact Us</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="carousel-item">
+                <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1564834744159-5cd0ee0ca2d1?w=1920&h=1080&fit=crop');">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-lg-8">
+                                <div class="hero-content slide-in-up">
+                                    <h1 class="hero-title">MASTER CRAFTSMANSHIP</h1>
+                                    <h2 class="hero-subtitle">Four Generations of Excellence</h2>
+                                    <p class="hero-description">From our workshop in Switzerland to your wrist, experience the pinnacle of horological artistry.</p>
+                                    <div class="hero-buttons">
+                                        <a href="{% url 'collections' %}" class="btn btn-gold btn-lg me-3">View Collection</a>
+                                        <a href="{% url 'about' %}" class="btn btn-outline-gold btn-lg">Learn More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 4 -->
+            <div class="carousel-item">
+                <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1565700833174-8c4ac37f3e1b?w=1920&h=1080&fit=crop');">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-lg-8">
+                                <div class="hero-content slide-in-down">
+                                    <h1 class="hero-title">TIMELESS ELEGANCE</h1>
+                                    <h2 class="hero-subtitle">A Legacy Worth Wearing</h2>
+                                    <p class="hero-description">Invest in a timepiece that will be treasured for generations, combining heritage with innovation.</p>
+                                    <div class="hero-buttons">
+                                        <a href="{% url 'collections' %}" class="btn btn-gold btn-lg me-3">Discover More</a>
+                                        <a href="{% url 'contact' %}" class="btn btn-outline-gold btn-lg">Get in Touch</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation arrows -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroSlider" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroSlider" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
+
+<!-- Featured Watches -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-4 mb-3">Featured Timepieces</h2>
+            <p class="lead text-muted">Exceptional watches that define luxury and precision</p>
+        </div>
+        
+        {% if featured_watches %}
+        <div class="row">
+            {% for watch in featured_watches %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="watch-card fade-in-up">
+                    <div class="position-relative overflow-hidden">
+                        <img src="{{ watch.image.url }}" alt="{{ watch.name }}" class="card-img-top">
+                        <div class="position-absolute top-0 end-0 p-3">
+                            <span class="badge bg-gold text-dark">Featured</span>
+                        </div>
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ watch.name }}</h5>
+                        <p class="card-text text-muted">{{ watch.description|truncatechars:100 }}</p>
+                        <div class="watch-price">${{ watch.price }}</div>
+                        <div class="d-grid gap-2">
+                            <a href="{{ watch.get_absolute_url }}" class="btn btn-outline-gold">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <div class="text-center mt-5">
+            <a href="{% url 'collections' %}" class="btn btn-gold btn-lg">View All Collections</a>
+        </div>
+    </div>
+</section>
+
+<!-- Brand Story Section -->
+<section class="py-5" style="background: var(--darker-bg);">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=600" alt="Watchmaking" class="img-fluid rounded">
+            </div>
+            <div class="col-lg-6">
+                <div class="ps-lg-4">
+                    <h3 class="display-5 mb-4">German Heritage Since 1890</h3>
+                    <p class="lead mb-4">For over a century, Centennial has been synonymous with exceptional German watchmaking. Each timepiece represents our unwavering commitment to precision, craftsmanship, and timeless elegance.</p>
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <div class="text-center">
+                                <h4 class="text-gold">130+</h4>
+                                <p class="text-muted">Years of Excellence</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center">
+                                <h4 class="text-gold">50,000+</h4>
+                                <p class="text-muted">Satisfied Customers</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{% url 'about' %}" class="btn btn-outline-gold">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h3 class="display-6 mb-3">Stay Connected</h3>
+                <p class="lead mb-4">Be the first to know about new collections, exclusive events, and special offers.</p>
+                <form class="newsletter-form">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="input-group input-group-lg">
+                                <input type="email" class="form-control" placeholder="Enter your email address" required>
+                                <button class="btn btn-gold" type="submit">Subscribe</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,159 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ watch.name }} - Centennial{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 100px;">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-gold">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'collections' %}" class="text-gold">Collections</a></li>
+            <li class="breadcrumb-item active text-white">{{ watch.name }}</li>
+        </ol>
+    </nav>
+    
+    <div class="row">
+        <!-- Product Images -->
+        <div class="col-lg-6 mb-4">
+            <div class="product-gallery">
+                <img src="{{ watch.image.url }}" alt="{{ watch.name }}" class="main-product-image img-fluid product-image mb-3" id="mainImage">
+                
+                <div class="row">
+                    <div class="col-4">
+                        <img src="{{ watch.image.url }}" alt="{{ watch.name }}" class="product-thumbnail img-fluid active" style="cursor: pointer; border: 2px solid var(--primary-gold);">
+                    </div>
+                    {% if watch.image_2 %}
+                    <div class="col-4">
+                        <img src="{{ watch.image_2.url }}" alt="{{ watch.name }}" class="product-thumbnail img-fluid" style="cursor: pointer; border: 2px solid transparent;">
+                    </div>
+                    {% endif %}
+                    {% if watch.image_3 %}
+                    <div class="col-4">
+                        <img src="{{ watch.image_3.url }}" alt="{{ watch.name }}" class="product-thumbnail img-fluid" style="cursor: pointer; border: 2px solid transparent;">
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Product Info -->
+        <div class="col-lg-6">
+            <div class="product-info">
+                {% if watch.is_featured %}
+                <span class="badge bg-gold text-dark mb-3">Featured</span>
+                {% endif %}
+                
+                <h1 class="display-5 mb-3">{{ watch.name }}</h1>
+                <p class="lead text-muted mb-4">{{ watch.description }}</p>
+                
+                <div class="price-display mb-4">${{ watch.price }}</div>
+                
+                <form class="add-to-cart-form mb-4">
+                    <input type="hidden" name="watch_id" value="{{ watch.id }}">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="quantity" class="form-label">Quantity:</label>
+                            <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1" max="5">
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex">
+                        <button type="submit" class="btn btn-gold btn-lg flex-fill">
+                            <i class="fas fa-shopping-bag me-2"></i>Add to Cart
+                        </button>
+                        <button type="button" class="btn btn-outline-gold btn-lg">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Specifications -->
+                <div class="mt-5">
+                    <h4 class="mb-3">Specifications</h4>
+                    <div class="table-responsive">
+                        <table class="table specs-table">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Case Material</th>
+                                    <td>{{ watch.case_material }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Case Diameter</th>
+                                    <td>{{ watch.case_diameter }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Movement</th>
+                                    <td>{{ watch.movement }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Crystal</th>
+                                    <td>{{ watch.crystal }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Water Resistance</th>
+                                    <td>{{ watch.water_resistance }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Bracelet Material</th>
+                                    <td>{{ watch.bracelet_material }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Features -->
+                <div class="mt-4">
+                    <h4 class="mb-3">Features</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-check text-gold me-2"></i>Swiss Made Excellence</li>
+                        <li class="mb-2"><i class="fas fa-check text-gold me-2"></i>Precision Craftsmanship</li>
+                        <li class="mb-2"><i class="fas fa-check text-gold me-2"></i>Lifetime Warranty</li>
+                        <li class="mb-2"><i class="fas fa-check text-gold me-2"></i>Complimentary Gift Box</li>
+                        <li class="mb-2"><i class="fas fa-check text-gold me-2"></i>Free Worldwide Shipping</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Related Products -->
+    {% if related_watches %}
+    <section class="mt-5 pt-5 border-top border-secondary">
+        <h3 class="text-center mb-5">You May Also Like</h3>
+        <div class="row">
+            {% for related_watch in related_watches %}
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="watch-card h-100">
+                    <img src="{{ related_watch.image.url }}" alt="{{ related_watch.name }}" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h6 class="card-title">{{ related_watch.name }}</h6>
+                        <div class="watch-price">${{ related_watch.price }}</div>
+                        <a href="{{ related_watch.get_absolute_url }}" class="btn btn-outline-gold btn-sm">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Product image gallery
+    const thumbnails = document.querySelectorAll('.product-thumbnail');
+    const mainImage = document.getElementById('mainImage');
+    
+    thumbnails.forEach(thumb => {
+        thumb.addEventListener('click', function() {
+            mainImage.src = this.src;
+            // Update active thumbnail
+            thumbnails.forEach(t => t.style.borderColor = 'transparent');
+            this.style.borderColor = 'var(--primary-gold)';
+        });
+    });
+});
+</script>
+{% endblock %}

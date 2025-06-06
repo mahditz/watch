@@ -1,0 +1,158 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About - Centennial{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section" style="height: 60vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1594534475808-b18fc33b045e?w=1200') center/cover;">
+    <div class="container h-100 d-flex align-items-center">
+        <div class="text-center w-100">
+            <h1 class="display-2 mb-4">Our Heritage</h1>
+            <p class="lead">A legacy of Swiss excellence spanning over a century</p>
+        </div>
+    </div>
+</section>
+
+<div class="container my-5">
+    <!-- Brand Story -->
+    <section class="py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="display-4 mb-4">Since 1890</h2>
+                <p class="lead mb-4">Centennial was founded in the heart of Switzerland with a simple yet ambitious vision: to create timepieces that would stand the test of time, embodying both technical excellence and aesthetic beauty.</p>
+                <p class="mb-4">Our founder, Master Watchmaker Henri Dubois, established the company with the belief that a watch should be more than just a tool for telling time—it should be a work of art, a companion for life, and a testament to human craftsmanship.</p>
+                <p>Today, four generations later, we continue to honor that legacy while embracing innovation and pushing the boundaries of horological excellence.</p>
+            </div>
+            <div class="col-lg-6">
+                <img src="https://images.unsplash.com/photo-1565700833174-8c4ac37f3e1b?w=600" alt="Swiss Workshop" class="img-fluid rounded">
+            </div>
+        </div>
+    </section>
+
+    <!-- Values -->
+    <section class="py-5" style="background: var(--darker-bg); margin: 0 -15px; padding: 0 15px;">
+        <div class="container">
+            <h2 class="text-center display-4 mb-5">Our Values</h2>
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-cog fa-3x text-gold"></i>
+                        </div>
+                        <h4 class="mb-3">Precision</h4>
+                        <p class="text-muted">Every component is crafted with meticulous attention to detail, ensuring accuracy that will endure for generations.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-gem fa-3x text-gold"></i>
+                        </div>
+                        <h4 class="mb-3">Excellence</h4>
+                        <p class="text-muted">We never compromise on quality, using only the finest materials and employing the most skilled artisans.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-heart fa-3x text-gold"></i>
+                        </div>
+                        <h4 class="mb-3">Passion</h4>
+                        <p class="text-muted">Our love for horology drives us to create timepieces that inspire and captivate watch enthusiasts worldwide.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Craftsmanship -->
+    <section class="py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0">
+                <h2 class="display-4 mb-4">Swiss Craftsmanship</h2>
+                <p class="lead mb-4">Each Centennial timepiece is a masterpiece of Swiss engineering, combining traditional techniques with cutting-edge technology.</p>
+                <div class="row mb-4">
+                    <div class="col-6">
+                        <h5 class="text-gold">300+</h5>
+                        <p class="text-muted">Components per watch</p>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="text-gold">40</h5>
+                        <p class="text-muted">Hours of assembly</p>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-6">
+                        <h5 class="text-gold">25</h5>
+                        <p class="text-muted">Master watchmakers</p>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="text-gold">100%</h5>
+                        <p class="text-muted">Swiss made</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <img src="https://images.unsplash.com/photo-1520637836862-4d197d17c55a?w=600" alt="Watchmaking" class="img-fluid rounded">
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="py-5">
+        <h2 class="text-center display-4 mb-5">Our Journey</h2>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="timeline">
+                    <div class="timeline-item mb-5">
+                        <div class="row align-items-center">
+                            <div class="col-md-4 text-center">
+                                <h4 class="text-gold">1890</h4>
+                            </div>
+                            <div class="col-md-8">
+                                <h5>Foundation</h5>
+                                <p class="text-muted">Henri Dubois establishes Centennial in Geneva, Switzerland.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item mb-5">
+                        <div class="row align-items-center">
+                            <div class="col-md-4 text-center">
+                                <h4 class="text-gold">1925</h4>
+                            </div>
+                            <div class="col-md-8">
+                                <h5>Innovation</h5>
+                                <p class="text-muted">Introduction of our first automatic movement, setting new standards in precision.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item mb-5">
+                        <div class="row align-items-center">
+                            <div class="col-md-4 text-center">
+                                <h4 class="text-gold">1960</h4>
+                            </div>
+                            <div class="col-md-8">
+                                <h5>Expansion</h5>
+                                <p class="text-muted">Opening of our modern manufacturing facility and expansion to international markets.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item mb-5">
+                        <div class="row align-items-center">
+                            <div class="col-md-4 text-center">
+                                <h4 class="text-gold">2024</h4>
+                            </div>
+                            <div class="col-md-8">
+                                <h5>Digital Era</h5>
+                                <p class="text-muted">Embracing e-commerce while maintaining our commitment to traditional craftsmanship.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

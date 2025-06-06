@@ -1,0 +1,136 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact - Centennial{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 100px;">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="text-center mb-5">
+                <h1 class="display-4 mb-3">Contact Us</h1>
+                <p class="lead text-muted">We're here to assist you with any questions about our timepieces</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <!-- Contact Form -->
+        <div class="col-lg-8 mb-5">
+            <div class="card bg-dark border-secondary">
+                <div class="card-header bg-gold text-dark">
+                    <h4 class="mb-0">Send us a Message</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form.name }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.email }}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            {{ form.subject }}
+                        </div>
+                        <div class="mb-4">
+                            {{ form.message }}
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-gold btn-lg">
+                                <i class="fas fa-paper-plane me-2"></i>Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact Information -->
+        <div class="col-lg-4">
+            <div class="card bg-dark border-secondary h-100">
+                <div class="card-header bg-gold text-dark">
+                    <h4 class="mb-0">Get in Touch</h4>
+                </div>
+                <div class="card-body p-4">
+                    <div class="contact-info">
+                        <div class="contact-item mb-4">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-map-marker-alt fa-2x text-gold me-3 mt-1"></i>
+                                <div>
+                                    <h6 class="mb-1">Address</h6>
+                                    <p class="text-muted mb-0">
+                                        Rue du Rhône 123<br>
+                                        1204 Geneva<br>
+                                        Switzerland
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item mb-4">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-phone fa-2x text-gold me-3 mt-1"></i>
+                                <div>
+                                    <h6 class="mb-1">Phone</h6>
+                                    <p class="text-muted mb-0">+41 22 123 4567</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item mb-4">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-envelope fa-2x text-gold me-3 mt-1"></i>
+                                <div>
+                                    <h6 class="mb-1">Email</h6>
+                                    <p class="text-muted mb-0">info@centennial.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item mb-4">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-clock fa-2x text-gold me-3 mt-1"></i>
+                                <div>
+                                    <h6 class="mb-1">Hours</h6>
+                                    <p class="text-muted mb-0">
+                                        Monday - Friday: 9:00 - 18:00<br>
+                                        Saturday: 10:00 - 16:00<br>
+                                        Sunday: Closed
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Map Section -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card bg-dark border-secondary">
+                <div class="card-header bg-gold text-dark">
+                    <h4 class="mb-0">Visit Our Boutique</h4>
+                </div>
+                <div class="card-body p-0">
+                    <div class="map-container" style="height: 400px; background: var(--darker-bg);">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2760.5326446805917!2d6.1547!3d46.2044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478c64ef6f596927%3A0x5c85d509d91b58b7!2sRue%20du%20Rh%C3%B4ne%2C%201204%20Gen%C3%A8ve%2C%20Switzerland!5e0!3m2!1sen!2sus!4v1635789012345!5m2!1sen!2sus"
+                            width="100%" 
+                            height="400" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
